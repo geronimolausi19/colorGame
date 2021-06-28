@@ -1,7 +1,4 @@
 
-let arrayDificult=["0", "1", "2", "3", "4", "5"]
-
-let arrayEasy= ["0", "1", "2"]
 
 let qtyColors = 6
 let qtyI= 5
