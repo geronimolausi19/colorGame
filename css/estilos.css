@@ -28,6 +28,32 @@ font-size: 40px;
 }
 
 .message-text{
-    color:white;
+    color:black;
     font-size: 30px;
+}
+
+#stripe{
+background-color: white;
+
+height: 45px;
+text-align: center;
+margin: 20px;
+
+
+}
+
+#reset{
+padding-top:6px ;
+background-color: black;
+height: 100%;
+text-align: center;
+color: blanchedalmond;
+
+
+
+
+}
+
+.selected{
+    background-color: blue;
 }

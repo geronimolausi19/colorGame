@@ -1,55 +1,79 @@
-let colors = ["rgb(240, 14, 128)", "rgb(100, 30, 160)", "rgb(100, 100, 100)", "rgb(30, 240, 98)", "rgb(73, 29, 99)", "rgb(40, 2, 222)"]
+
+let arrayDificult=["0", "1", "2", "3", "4", "5"]
+
+let arrayEasy= ["0", "1", "2"]
+
+let qtyColors = 6
+let qtyI= 5
+
+let colors = generateRandomColors(qtyColors)
 
 
-//devuelve un color al azar de nuetros arreglo de colores
-let pickedColor = pickColor()
-//toma el span de el titulo
+let pickedColor = colors[pickColor([qtyI])]
+
 let colorDisplay = document.querySelector("#colorDisplay")
-//mensaje que expresa si es correcto o incorrecto
+
 let messageDisplay=document.querySelector("#message")
-//toma los cuadros
+
 let cuadrados = document.querySelectorAll(".square")
 
+let buttonReset= document.querySelector("#reset")
 
-//Inserta un color en el span del titulo
-colorDisplay.innerHTML= pickedColor
+let buttonHard= document.querySelector("#hard")
+
+let buttonEasy= document.querySelector("#easy")
+
+function pickColor(qtyI){
+let random = Math.random()*qtyI
+let redondeo= Math.round(random)
+console.log(redondeo)
+return (redondeo)
+
+}
+
+
+
 
 
 //Recorremos los cuadrados
-    for(let i = 0; i<cuadrados.length ;i++){
+function game (){
+    colorDisplay.innerHTML= pickedColor
+
+    buttonReset.addEventListener("click", function(){
+        newGame()
+recorrerCuadrados()
+         })
+   
+
+         buttonHard.addEventListener("click", function(){
+            buttonHard.classList.add("selected")
+            buttonEasy.classList.remove("selected")
+            console.log("entre en hard")
+            qtyColors=6
+            qtyI=5
+         newGame()
+         recorrerCuadrados()
+        })
+
+         buttonEasy.addEventListener("click", function(){
+             console.log("entre en easy")
+            buttonEasy.classList.add("selected")
+            buttonHard.classList.remove("selected")
+            qtyColors= 3
+            qtyI=2
+        newGame()
+    recorrerCuadrados()
+   
+
+        })
+
       
-       //le asigana un color a cada cuadrado[i]
-        cuadrados[i].style.backgroundColor=colors[i]
 
-        //funcion que se activa con el click de un cuadrado determinado
-        cuadrados[i].addEventListener("click", function() {
-
-               // toma el color inicial del cuadrado
-           let clickedColor= this.style.backgroundColor
-       
-            //si el valor inicial es igaul al color a adivinar, entonces...
-           if(clickedColor == pickedColor){
-               //Nos muestra el correcto
-            messageDisplay.textContent="Correcto!!"
-            //cambia el titulo de color
-            document.querySelector("h1").style.color = clickedColor
-
-            //cambia de color los cuadrados, para el color correcto
-                changeColors(clickedColor)
-              
-             
-
-        } else {
-
-            //si elegis mal, el cuadrado se vuelve eel color del fondo 
-            // y te muestra el texto de try again
-            this.style.backgroundColor=" #232323";
-            messageDisplay.textContent=("try again")
-        }
+         //cuadrados y colores iniciales
+            recorrerCuadrados()
     
-    })
-
-}
+} game()
+ 
 
 
 //cambia el color
@@ -60,58 +84,74 @@ function changeColors (color){
     }
 }
 
-//crea un color random al azar
-function pickColor(){
+function generarNumero (numero){
 
-    let random = Math.random()*5
-    let random2 = Math.round(random)
-
-
-  return colors[random2]
-
+    return (Math.random()*numero).toFixed(0)
 }
- 
 
+function randomColors(){
+let coolor= "("+generarNumero(255)+ ", " + generarNumero(255) + ", " + generarNumero(255)+ ")";
 
- function generarLetra(){
-	var letras = ["a","b","c","d","e","f","0","1","2","3","4","5","6","7","8","9"];
-	var numero = (Math.random()*15).toFixed(0);
-   
-    console.log(letras[numero])
-	return letras[numero];
-                                                   
-} generarLetra()
+return "rgb" + coolor
+}
 
 
 
-// function colorHEX(){
-// 	var coolor = "";
-// 	for(let i=0;i<6;i++){
-// 		coolor = coolor + generarLetra() ;
-// 	}
-// console.log(coolor)
-// 	return "#" + coolor;
-// } colorHEX()
+function generateRandomColors(qty) {
 
-
-let array= []
-
-function generateRandomColors(numero){
- 
-    for(let i= 0; i<numero.length;i++){
-
- array.push(numero[i])
-
-console-log(numero[i])
+    let array = []
+    for(let i= 0; i<qty;i++){
+ array.push(randomColors())
 
     }
-
-    console.log(array)
-
    return array
-
 }
-generateRandomColors(6)
+
+
+
+function newGame() {
+
+colors= generateRandomColors(qtyColors)
+pickedColor = colors[pickColor([qtyI])]
+colorDisplay.innerHTML= pickedColor
+document.querySelector("h1").style.color = "white"    
+buttonReset.innerHTML="New Colors"     
+messageDisplay.textContent=""
+console.log(pickedColor)
+
+} 
+
+function recorrerCuadrados(){
+
+    for(let i = 0; i<cuadrados.length ;i++){
+          if(colors[i]!==undefined){
+              cuadrados[i].style.backgroundColor=colors[i]  
+          } else{
+              cuadrados[i].style.backgroundColor= "#232323"
+          }
+          
+          cuadrados[i].addEventListener("click", function() {
+  
+             let clickedColor= this.style.backgroundColor
+             if(clickedColor == pickedColor){
+  
+              messageDisplay.textContent="Correcto!!"
+              document.querySelector("h1").style.color = pickedColor
+                  changeColors(clickedColor)
+                  buttonReset.innerHTML="Play Again"
+          } else {
+  
+              this.style.backgroundColor=" #232323";
+  
+              messageDisplay.textContent=("try again")
+          }
+      
+      })
+  
+  }
+}
+
+
 
 
 
@@ -141,20 +181,3 @@ generateRandomColors(6)
 
 
  
-//  function randomColor(){
-
-//     let random1 = Math.random()*255
-//     let n1 = Math.round(random1)
-
-//     let random2 = Math.random()*255
-//     let n2=Math.round(random2)
-
-//     let random3 = Math.random()*255
-//     let n3= Math.round(random3)
-
-
-    
-// return (n1, n2, n3)
-
-
-//  }  randomColor()
