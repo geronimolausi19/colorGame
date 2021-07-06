@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Orbitron&family=Tourney:wght@100&display=swap');
 
 .square{
 float: right;
@@ -7,7 +9,9 @@ background-color:red;
 padding-bottom: 30%;
 color: red;
 margin: 10px;
-
+border-radius: 15px;
+margin-top: 10px;
+transition: all .6s;
 
 }
 
@@ -17,43 +21,98 @@ margin: 10px;
 .container{
 max-width: 600px;
 margin: 0 auto;
-
+margin-top: 30px;
 }
 
 
 .color-titulo{
-    color: white;
-font-size: 40px;
+    color: rgb(236, 32, 185);
+font-size: 50px;
     text-align: center;
+    font-family: 'Dela Gothic One', cursive;
+margin-bottom: 40px;
+font-family: 'Tourney', cursive;
+
 }
 
 .message-text{
-    color:black;
-    font-size: 30px;
+    color:rgb(0, 0, 0);
+    font-family: 'Dela Gothic One', cursive;
+
 }
 
-#stripe{
-background-color: white;
-
-height: 45px;
+.big-grid{
+align-items: center;
 text-align: center;
-margin: 20px;
+    height: 45px; 
+    background-color: rgb(65, 54, 131);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns :300px 120px 100px 50px;
+align-items: center;
+background-color: rgb(65, 54, 131);
+
+border-radius: 4px;
+height: 45px;
+width: 50%;
+margin-left: 400px;
 
 
 }
+
+
 
 #reset{
-padding-top:6px ;
-background-color: black;
-height: 100%;
+
+
+
 text-align: center;
-color: blanchedalmond;
-
-
-
+font-family: 'Dela Gothic One', cursive;
+padding-top: 10px;
 
 }
 
+
+#hard{
+    padding-top: 10px;  
+    font-family: 'Dela Gothic One', cursive;
+}
+#easy{
+    padding-top: 10px;  
+    font-family: 'Dela Gothic One', cursive;
+}
+
+
 .selected{
-    background-color: blue;
+    background-color: black;
+    color: white;
+}
+
+.hidden{
+  display: none;
+}
+
+.buttons{
+ 
+    
+ 
+    padding: 1em 2em;
+ 
+ font-size: 100%;
+  border: none;
+    
+    background-color: rgb(65, 54, 131);
+height: 45px; 
+ 
+    cursor: pointer;
+    
+}
+.buttons:hover {
+background-color: black;
+opacity: 10px;
+color: white;
 }
